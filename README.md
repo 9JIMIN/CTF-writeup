@@ -3,6 +3,6 @@
 - Web
 
 <p align="center">
-<img src="./patience.jpg" width="600" >
+<img src="./images/patience.jpg" width="600" >
 <p align="center">keep carm and capture the flag</p>
 </p>
