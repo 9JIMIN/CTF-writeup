@@ -13,3 +13,7 @@
 - 계정화면에는 userid, userName, userLevel이 표시됨. 
 - 이걸 user backupCode로 바꿔서 출력을 하게 하면 되는데...
     - 이 방법은 불가능한 듯. 
+***
+
+- 쿠키가 `{"idx":17,"level":"guest","name":"one","userid":"one"}`를 base64로 인코딩한 형태이다. 
+- 그래서 내용을 바꿔서 `{"idx":1,"level":"admin","name":"Apple","userid":"Apple"}` 이걸 인코딩해서 넣어주니.. 안된다. 왜지?? 맞는 거 같은데..
