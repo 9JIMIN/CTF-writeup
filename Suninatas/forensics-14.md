@@ -1,9 +1,3 @@
-<!-- ---
-layout: default
-title: suninatas
-nav_order: 1
---- -->
-
 # Forensics-14
 
     리눅스에는 /etc/passwd, etc/shadow가 있다. 

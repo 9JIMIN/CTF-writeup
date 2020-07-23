@@ -1,10 +1,3 @@
-<!-- ---
-layout: default
-title: command-injection-1
-nav_order: 1
-parent: dreamhack
---- -->
-
 # command-injection-1
 
 - `ping -c 3 "{host}"`로 host를 받아서, ping요청을 보냄.
