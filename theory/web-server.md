@@ -402,7 +402,7 @@ UNION attack 같은 경우는 결과를 볼 수 있기에 가능한 공격이다
 
 이런식으로 DB를 검색했는데, welcomeback이 뜬다. 즉, administrator계정이 있다. 
 
-<img src='./images/theory/sql-1.png'>
+<img src='../images/theory/sql-1.png'>
 
 다음으로는 비번을 알아야한다. 비번을 불러도, 값을 띄울 수가 없기에 참-거짓으로만 알아내야 한다. 일단, 비번의 길이부터.. 
 
@@ -421,7 +421,7 @@ x'UNION+SELECT+'a'+FROM+users+WHERE+username='administrator'+AND+substring(passw
 
 끝에 값을 0-9, a-z까지 해봐야함. `substring(password, 1, 1)='$a$'--` sniper로 해서 검사하면, match에 하나만 걸림. 그리고 이걸 20번 반복하면됨. 
 
-<img src='./images/theory/sql-2.png'>
+<img src='../images/theory/sql-2.png'>
 
  
 
@@ -535,7 +535,7 @@ x'%3BSELECT+CASE+WHEN+(username='administrator'+AND+substring(password,§2§,1)=
 
 intruder에 보내서, clusterbomb, thread=1, 그리고 공격, response received칼럼으로 정렬함. 
 
- <img src='./images/theory/sql-3.png'>
+ <img src='../images/theory/sql-3.png'>
 
 password 확인가능 
 
@@ -648,13 +648,13 @@ whoami 커맨드의 결과가 https;//vulnerable-website.com/whoami.txt 여기�
 
 **예제** 
 
-<img src='./images/theory/os-1.png'>
+<img src='../images/theory/os-1.png'>
 
 whoami커맨드의 결과를 옮긴다. 
 
 옮길때는 프록시를 보면서 사이트 접근시 로드되는 파일 디렉토리로 한다. 
 
-<img src='./images/theory/os-2.png'>
+<img src='../images/theory/os-2.png'>
 
 
 
@@ -717,7 +717,7 @@ pull하면, whoami커맨드에 대한 결과를 **DNS query**에서 확인가능
 
 위의 스크립트를 붙여 보내면, 해당 코드가 실행되면서 디렉토리를 삭제할 수 있다. 
 
-<img src='./images/theory/st-1.png'>
+<img src='../images/theory/st-1.png'>
 
 \# **Basic server-side template injection (code context)** 
 
@@ -736,7 +736,7 @@ blog-post-author-display=user.name}}{%25+import+os+%25}{{os.system('rm%20/home/c
 
 해당 디렉토리가 삭제된다. 
 
-<img src='./images/theory/st-2.png'>
+<img src='../images/theory/st-2.png'>
 
 **# Server-side template injection using documentation** 
 
@@ -773,7 +773,7 @@ Settings에 접근이 가능함을 알 수 있다.
 
 Settings에 숨겨진 키를 찾는다. 
 
-<img src='./images/theory/st-3.png'>
+<img src='../images/theory/st-3.png'>
 
 **# Server-side template injection in a sandboxed environment** 
 
@@ -784,7 +784,7 @@ Product 오브젝트에서 그 메소드를 연결지으면 원하는 디렉토�
 
 그리고 읽은 내용을 아스키로 변환하면 키가 된다. 
 
-<img src='./images/theory/st-4.png'>
+<img src='../images/theory/st-4.png'>
 
 
 
@@ -809,4 +809,4 @@ Product 오브젝트에서 그 메소드를 연결지으면 원하는 디렉토�
 여기서는 목표가 /.ssh/id_rsa 경로에 있는 파일을 삭제하는 것이었다. 
 그러니, user.setAvatar('/home/carlos/.ssh/id_rsa','image/jpg') 이렇게 아바타를 파일로 설정을 하고, user 메서드에 있는 user.gdprDelete() 로 지워주면 된다. 
 
-<img src='./images/theory/st-5.png'>
+<img src='../images/theory/st-5.png'>

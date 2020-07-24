@@ -1,5 +1,3 @@
-[TOC]
-
 # 1. SOP
 
 ## 1.1. SOP 란? 
@@ -105,18 +103,18 @@
 
 http응답의 헤더를 보면 Ajax 요청에 대한 Access-Control헤더가 있다. 즉, CORS를 지원한다. 
 
-<img src='./images/theory/sop-1.png'>
+<img src='../images/theory/sop-1.png'>
 
 
 
 api키를 알아내고 싶다.
 요청헤더에 Origin을 더하여, 외부요청에 대한 응답에도 허용을 하는지 알아본다. 
 
-<img src='./images/theory/sop-2.png'>
+<img src='../images/theory/sop-2.png'>
 
  Origin에 외부주소를 넣는다. 
 
-<img src='./images/theory/sop-3.png'>
+<img src='../images/theory/sop-3.png'>
 
  
 
@@ -421,7 +419,7 @@ Host/?search="><svg><discard onbegin=alert(1)>
 
 **검색창에 입력한 텍스트가 input 태그의 value 속성 값으로 들어가는 경우.** 
 
-<img src='./images/theory/xss-1.png'>
+<img src='../images/theory/xss-1.png'>
 
 검색창에 `" onmouseover="alert(1)` 를 넣는다. 
 
@@ -436,7 +434,7 @@ Host/?search="><svg><discard onbegin=alert(1)>
 
 이럴때는 '-alert(1)-' 를 쓰면 string에서 빠져나올 수 있음. 
 
-<img src='./images/theory/xss-2.png'>
+<img src='../images/theory/xss-2.png'>
 
 이렇게 해서 alert 실행  
 
@@ -452,7 +450,7 @@ string에서 빠져나오기위해서 위와 같은 방법이 쓰임.
 'jimin' 을 입력하면, ' 앞에 \가 붙게됨. 
 그래서 \'; 로 string을 닫아주고, alert(1) 같은 스크립트를 넣고, //로 뒤에 붙는 애들을 주석처리함. 
 
-<img src='./images/theory/xss-3.png'>
+<img src='../images/theory/xss-3.png'>
 
 
 
@@ -480,7 +478,7 @@ URL파라미터가 태그의 속성으로 들어간다는 것을 이용해서,
 
 **링크 수정하기**
 
-<img src='./images/theory/xss-4.png'>
+<img src='../images/theory/xss-4.png'>
 
 뒤로 가기 기능이 자바스크립트로 작성되어있다. URL 파라미터를 삽입할 수 있음을 확인. 
 아래 파라미터를 넣은 URL을 로드한다.
@@ -502,7 +500,7 @@ href="javascript:fetch('/analytics',{method:'post',body:'/post?postId=5&'},x=x=>
 
 **내 계정에 입력한 웹사이트 주소가 내가 쓴 댓글 프로필의 a 태그 onclick 속성 안으로 들어간다.** 
 
-<img src='./images/theory/xss-5.png'>
+<img src='../images/theory/xss-5.png'>
 
 `http://foo/?'-alert(1)-&apos`
 
@@ -667,9 +665,9 @@ URL 파라미터를 통해서 전달됨을 확인한다.
 
 요청 URL qeury string에는 dangling으로 인해 csrf 값까지 포함되어 있다. 
 
-<img src='./images/theory/xss-6.png'>
+<img src='../images/theory/xss-6.png'>
 
-<img src='./images/theory/xss-7.png' width='800'> 
+<img src='../images/theory/xss-7.png' width='800'> 
 
 요청 URL을 디코딩하면 위와같이 csrf를 가져오면 email을 바꾸기 위한 모든 준비가 끝나게 된다. 
 
@@ -854,7 +852,7 @@ CSRF를 막기위해서는 CSRF token을 쓴다.
 
 그리고 이 사이트의 URL을 보내서 다른 유저가 방문을 하면, Click me라는 문구만 보이게 된다. 
 
-<img src='./images/theory/cj-1.png'>
+<img src='../images/theory/cj-1.png'>
 
  
 
