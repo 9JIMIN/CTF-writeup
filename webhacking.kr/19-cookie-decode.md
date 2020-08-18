@@ -1,0 +1,48 @@
+# 쿠키값 조작을 통한 로그인
+
+guest로 로그인을 해본다. 
+그럼 아래와 같은 쿠키가 생성된다. 
+
+```json
+{ 'userid':'YjJmNWZmNDc0MzY2NzFiNmU1MzNkOGRjMzYxNDg0NWQ3Yjc3NGVmZmU0YTM0OWM2ZGQ4MmFkNGY0ZjIxZDM0Y2UxNjcxNzk3YzUyZTE1Zjc2MzM4MGI0NWU4NDFlYzMyMDNjN2MwYWNlMzk1ZDgwMTgyZGIwN2FlMmMzMGYwMzRlMzU4ZWZhNDg5ZjU4MDYyZjEwZGQ3MzE2YjY1NjQ5ZQ%3D%3D'
+}
+```
+
+base64 인코딩이 되어있다. 
+끝에 %3D%3D는 빼고, 디코딩을 해본다. 
+
+```
+b2f5ff47436671b6e533d8dc3614845d7b774effe4a349c6dd82ad4f4f21d34ce1671797c52e15f763380b45e841ec3203c7c0ace395d80182db07ae2c30f034e358efa489f58062f10dd7316b65649e
+```
+
+md5 해시값이 여러개 나온다. 
+32개씩 나눠서 복호화를 한다. => [해시사이트](https://www.dcode.fr/md5-hash)
+
+그럼 guest 라고 나온다. 
+guest를 한글자씩 md5로 암호화하고, base64로 인코딩한 값이 userid 쿠키값이라는 것을 파악할 수 있다. 
+
+admin을 위의 방법대로 쿠키값을 만들어서 로그인을 할 수 있다. 
+
+- a => 0cc175b9c0f1b6a831c399e269772661
+- d => 8277e0910d750195b448797616e091ad
+- m => 6f8f57715090da2632453988d9a1501b
+- i => 865c0c0b4ab0e063e5caa3387c1a8741
+- n => 7b8b965ad4bca0e41ab51de7b31363a1
+
+```
+0cc175b9c0f1b6a831c399e2697726618277e0910d750195b448797616e091ad6f8f57715090da2632453988d9a1501b865c0c0b4ab0e063e5caa3387c1a87417b8b965ad4bca0e41ab51de7b31363a1
+```
+
+base64 encoding
+
+```
+MGNjMTc1YjljMGYxYjZhODMxYzM5OWUyNjk3NzI2NjE4Mjc3ZTA5MTBkNzUwMTk1YjQ0ODc5NzYxNmUwOTFhZDZmOGY1NzcxNTA5MGRhMjYzMjQ1Mzk4OGQ5YTE1MDFiODY1YzBjMGI0YWIwZTA2M2U1Y2FhMzM4N2MxYTg3NDE3YjhiOTY1YWQ0YmNhMGU0MWFiNTFkZTdiMzEzNjNhMQ==
+```
+
+쿠키값
+
+```
+MGNjMTc1YjljMGYxYjZhODMxYzM5OWUyNjk3NzI2NjE4Mjc3ZTA5MTBkNzUwMTk1YjQ0ODc5NzYxNmUwOTFhZDZmOGY1NzcxNTA5MGRhMjYzMjQ1Mzk4OGQ5YTE1MDFiODY1YzBjMGI0YWIwZTA2M2U1Y2FhMzM4N2MxYTg3NDE3YjhiOTY1YWQ0YmNhMGU0MWFiNTFkZTdiMzEzNjNhMQ%3D%3D
+```
+
+> 쿠키값이 만들어지는 알고리즘을 파악하는 문제이다. 
